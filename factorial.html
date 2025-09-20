@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Factorial Calculator (Recursive JS)</title>
+</head>
+<body>
+  <h2>Factorial Calculator (Recursive JavaScript)</h2>
+
+  <form id="factorialForm">
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" required>
+    <button type="submit">Calculate</button>
+  </form>
+
+  <h3 id="result"></h3>
+
+  <script>
+    // Recursive factorial function in JavaScript
+    function factorial(n) {
+      if (n < 0) {
+        throw new Error("Factorial is not defined for negative numbers.");
+      }
+      if (n === 0 || n === 1) {
+        return 1;
+      }
+      return n * factorial(n - 1);
+    }
+
+    // Handle form submission
+    document.getElementById('factorialForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent page reload
+      const num = parseInt(document.getElementById('number').value);
+      const resultEl = document.getElementById('result');
+
+      try {
+        const result = factorial(num);
+        resultEl.textContent = `Result: Factorial of ${num} is ${result}`;
+        resultEl.style.color = "black";
+      } catch (err) {
+        resultEl.textContent = `Error: ${err.message}`;
+        resultEl.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
